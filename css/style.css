@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: aquamarine; */
+    font-family: sans-serif;
+    background-image: url(../assets/background.webp);
+    background-repeat: no-repeat;
+    
+}
+
+.container{
+    min-height: 100vh;
+    background-size: 100vh 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#board{
+    background: linear-gradient(rgb(228, 209, 173), rgb(119, 175, 187) );
+    width: 90vmin;
+    height: 92vmin;
+    border: 2px solid black;
+}
