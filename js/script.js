@@ -82,11 +82,7 @@ function gameEngine(){
         foodElement.classList.add('food')
         board.appendChild(foodElement);
 
-
     }
-
-
-
 
 
 //main logic
