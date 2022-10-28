@@ -23,9 +23,21 @@ function main(ctime){
     gameEngine();
 }
 
-function isCollide(sarr){
-    return false;
+function isCollide(snake){
+    //if collide with body
+    for (let i = 1; i < snakeArr.length; i++) {
+        if(snake[i].x === snake[0].x && snake[i].y === snake[0].y){
+            return true;
+        }
+    }
+
+    //if colide with walls
+    if (snake[0].x >=18 || snake[0].x <=0 && snake[0].y >=18 || snake[0].y <=0){
+        return true;
+    }
+    
 }
+
 
 function gameEngine(){
 
@@ -34,7 +46,7 @@ function gameEngine(){
         gameoverSound.play();
         themeSound.pause();
         snakeVel = {x:0, y:0};
-        alert("Game Over. Press any key to Play Again");
+        alert("Game Over. Press OK to Play Again");
         snakeArr = [{x:12, y:14}];
         themeSound.play();
         score = 0;
