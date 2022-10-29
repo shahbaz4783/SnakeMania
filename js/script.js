@@ -4,7 +4,8 @@ const foodSound = new Audio('food.mp3');
 const gameoverSound = new Audio('gameover.mp3');
 const moveSound = new Audio('move.mp3');
 const themeSound = new Audio('theme.mp3');
-let speed = 7;
+let speed = 8;
+let score = 0;
 let lastPaintTime = 0;
 let snakeArr = [
     {x:12, y:14}
@@ -56,9 +57,16 @@ function gameEngine(){
 
     if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
         foodSound.play();
+        score += 1;
+        if(score>hiscoreval){
+            hiscoreval = score;
+            localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+            hiscoreBox.innerHTML = "HiScore: " + hiscoreval;
+        }
+        scoreBox.innerHTML = "Score: " + score;
         snakeArr.unshift({x: snakeArr[0].x + snakeVel.x, y: snakeArr[0].y + snakeVel.y})
-        let a = 0;
-        let b = 18;
+        let a = 1;
+        let b = 17;
         food = {x: Math.round(a+(b-a)* Math.random()), y: Math.round(a+(b-a)* Math.random())}
     }
 
@@ -98,6 +106,19 @@ function gameEngine(){
 
 
 //main logic
+
+
+let hiscore = localStorage.getItem("hiscore");
+if(hiscore === null){
+    hiscoreval = 0;
+    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
+}
+else{
+    hiscoreval = JSON.parse(hiscore);
+    hiscoreBox.innerHTML = "HiScore: " + hiscore;
+}
+ 
+
 window.requestAnimationFrame(main);
 window.addEventListener('keydown', e=>{
     snakeVel= {x:0, y:1}
