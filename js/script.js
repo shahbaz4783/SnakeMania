@@ -4,7 +4,7 @@ const foodSound = new Audio('food.mp3');
 const gameoverSound = new Audio('gameover.mp3');
 const moveSound = new Audio('move.mp3');
 const themeSound = new Audio('theme.mp3');
-let speed = 5;
+let speed = 7;
 let lastPaintTime = 0;
 let snakeArr = [
     {x:12, y:14}
@@ -32,7 +32,7 @@ function isCollide(snake){
     }
 
     //if colide with walls
-    if (snake[0].x >=18 || snake[0].x <=0 && snake[0].y >=18 || snake[0].y <=0){
+    if (snake[0].x >=18 || snake[0].x <=0 || snake[0].y >=18 || snake[0].y <=0){
         return true;
     }
     
@@ -44,11 +44,11 @@ function gameEngine(){
     //first: updating snake array and food
     if(isCollide(snakeArr)){
         gameoverSound.play();
-        themeSound.pause();
+        // themeSound.pause();
         snakeVel = {x:0, y:0};
         alert("Game Over. Press OK to Play Again");
         snakeArr = [{x:12, y:14}];
-        themeSound.play();
+        // themeSound.play();
         score = 0;
     }
 
@@ -57,8 +57,8 @@ function gameEngine(){
     if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
         foodSound.play();
         snakeArr.unshift({x: snakeArr[0].x + snakeVel.x, y: snakeArr[0].y + snakeVel.y})
-        let a = 2;
-        let b = 16;
+        let a = 0;
+        let b = 18;
         food = {x: Math.round(a+(b-a)* Math.random()), y: Math.round(a+(b-a)* Math.random())}
     }
 
@@ -102,6 +102,7 @@ window.requestAnimationFrame(main);
 window.addEventListener('keydown', e=>{
     snakeVel= {x:0, y:1}
     moveSound.play();
+    // themeSound.play();
     switch (e.key) {
         case "ArrowUp":
             console.log("ArrowUp")
@@ -132,5 +133,6 @@ window.addEventListener('keydown', e=>{
     }
      
 });
+
 
 

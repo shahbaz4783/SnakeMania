@@ -33,14 +33,18 @@ body{
 
 .head{
     background-color: rgb(76, 109, 6);
+    border-radius: 10px;
+    transform: scale(1.1);
 }
 
 .snake{
     background-color: greenyellow;
-    border: 1px solid black;
+    border: .25vmin solid rgb(134, 87, 221);
+    border-radius: 12px;
 }
 
 .food{
-    background-color: rgb(124, 81, 164);
+    background-color: rgb(180, 144, 213);
+    border: .25vmin solid rgb(46, 3, 126);
     border-radius: 45%;
 }
