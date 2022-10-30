@@ -157,38 +157,24 @@ window.addEventListener('keydown', e=>{
 
 //touch controls
 
-window.addEventListener('touchstart', e=>{
-    snakeVel= {x:0, y:1}
-    moveSound.play();
-    // themeSound.play();
-    switch (e.changedTouches) {
-        case "SwipedUp":
-            console.log("swiped up!")
-            snakeVel.x = 0;
-            snakeVel.y = -1;
-            break;
-    
-        case "SwipedDown":
-            console.log("swiped down!")
-            snakeVel.x = 0;
-            snakeVel.y = 1;
-            break;
-    
-        case "SwipedLeft":
-            console.log("swiped left!")
-            snakeVel.x = -1;
-            snakeVel.y = 0;
-            break;
-    
-        case "SwipedRight":
-            console.log("swiped right!")
-            snakeVel.x = 1;
-            snakeVel.y = 0;
-            break;
-    
-        default:
-            break;
-    }
-     
-});
 
+let touchstartX = 0
+let touchendX = 0
+    
+function checkDirection() {
+  if (touchendX < touchstartX) 
+  snakeVel.x = -1;
+  snakeVel.y = 0;
+  if (touchendX > touchstartX)
+  snakeVel.x = 1;
+  snakeVel.y = 0;
+}
+
+document.addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX
+})
+
+document.addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX
+  checkDirection()
+})
