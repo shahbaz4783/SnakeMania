@@ -178,3 +178,26 @@ document.addEventListener('touchend', e => {
   touchendX = e.changedTouches[0].screenX
   checkDirection()
 })
+
+
+
+let touchstartY = 0
+let touchendY = 0
+    
+function checkDirection() {
+  if (touchendY < touchstartY) 
+  snakeVel.x = 0;
+  snakeVel.y = -1;
+  if (touchendY > touchstartY)
+  snakeVel.x = 0;
+  snakeVel.y = 1;
+}
+
+document.addEventListener('touchstart', e => {
+  touchstartY = e.changedTouches[0].screenY
+})
+
+document.addEventListener('touchend', e => {
+  touchendY = e.changedTouches[0].screenY
+  checkDirection()
+})
