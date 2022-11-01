@@ -181,23 +181,23 @@ document.addEventListener('touchend', e => {
 
 
 
-let touchstartY = 0
-let touchendY = 0
+// let touchstartY = 0
+// let touchendY = 0
     
-function checkDirection() {
-  if (touchendY < touchstartY) 
-  snakeVel.x = 0;
-  snakeVel.y = -1;
-  if (touchendY > touchstartY)
-  snakeVel.x = 0;
-  snakeVel.y = 1;
-}
+// function checkDirection() {
+//   if (touchendY < touchstartY) 
+//   snakeVel.x = 0;
+//   snakeVel.y = -1;
+//   if (touchendY > touchstartY)
+//   snakeVel.x = 0;
+//   snakeVel.y = 1;
+// }
 
-document.addEventListener('touchstart', e => {
-  touchstartY = e.changedTouches[0].screenY
-})
+// document.addEventListener('touchstart', e => {
+//   touchstartY = e.changedTouches[0].screenY
+// })
 
-document.addEventListener('touchend', e => {
-  touchendY = e.changedTouches[0].screenY
-  checkDirection()
-})
+// document.addEventListener('touchend', e => {
+//   touchendY = e.changedTouches[0].screenY
+//   checkDirection()
+// })
