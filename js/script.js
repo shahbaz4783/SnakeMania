@@ -155,20 +155,24 @@ window.addEventListener('keydown', e=>{
      
 });
 
+
 //touch controls
 
 
-let touchstartX = 0
-let touchendX = 0
-    
-function checkDirection() {
-  if (touchendX < touchstartX) 
-  snakeVel.x = -1;
-  snakeVel.y = 0;
-  if (touchendX > touchstartX)
-  snakeVel.x = 1;
-  snakeVel.y = 0;
-}
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
+let touchendY = 0;
+
+const gestureZone = document.getElementById('modalContent');
+
+document.addEventListener('touchstart', e => {
+  touchstartY = e.changedTouches[0].screenY
+})
+
+document.addEventListener('touchend', e => {
+  touchendY = e.changedTouches[0].screenY
+}) 
 
 document.addEventListener('touchstart', e => {
   touchstartX = e.changedTouches[0].screenX
@@ -177,27 +181,31 @@ document.addEventListener('touchstart', e => {
 document.addEventListener('touchend', e => {
   touchendX = e.changedTouches[0].screenX
   checkDirection()
-})
+}) 
 
-
-
-// let touchstartY = 0
-// let touchendY = 0
+function checkDirection() {
+    if (touchendX < touchstartX) {
+        console.log('Swiped left');
+        snakeVel.x = -1;
+        snakeVel.y = 0;
+    }
     
-// function checkDirection() {
-//   if (touchendY < touchstartY) 
-//   snakeVel.x = 0;
-//   snakeVel.y = -1;
-//   if (touchendY > touchstartY)
-//   snakeVel.x = 0;
-//   snakeVel.y = 1;
-// }
-
-// document.addEventListener('touchstart', e => {
-//   touchstartY = e.changedTouches[0].screenY
-// })
-
-// document.addEventListener('touchend', e => {
-//   touchendY = e.changedTouches[0].screenY
-//   checkDirection()
-// })
+    if (touchendX > touchstartX) {
+        console.log('Swiped right');
+        snakeVel.x = 1;
+        snakeVel.y = 0;
+    }
+    
+    if (touchendY < touchstartY) {
+        console.log('Swiped up');
+        snakeVel.x = 0;
+        snakeVel.y = -1;
+    }
+    
+    if (touchendY > touchstartY) {
+       console.log('Swiped down');
+       snakeVel.x = 0;
+        snakeVel.y = 1;
+    }
+    
+}
