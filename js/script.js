@@ -119,41 +119,41 @@ else{
 }
  
 
-window.requestAnimationFrame(main);
-window.addEventListener('keydown', e=>{
-    snakeVel= {x:0, y:1}
-    moveSound.play();
-    // themeSound.play();
-    switch (e.key) {
-        case "ArrowUp":
-            console.log("ArrowUp")
-            snakeVel.x = 0;
-            snakeVel.y = -1;
-            break;
+// window.requestAnimationFrame(main);
+// window.addEventListener('keydown', e=>{
+//     snakeVel= {x:0, y:1}
+//     moveSound.play();
+//     // themeSound.play();
+//     switch (e.key) {
+//         case "ArrowUp":
+//             console.log("ArrowUp")
+//             snakeVel.x = 0;
+//             snakeVel.y = -1;
+//             break;
     
-        case "ArrowDown":
-            console.log("ArrowDown")
-            snakeVel.x = 0;
-            snakeVel.y = 1;
-            break;
+//         case "ArrowDown":
+//             console.log("ArrowDown")
+//             snakeVel.x = 0;
+//             snakeVel.y = 1;
+//             break;
     
-        case "ArrowLeft":
-            console.log("ArrowLeft")
-            snakeVel.x = -1;
-            snakeVel.y = 0;
-            break;
+//         case "ArrowLeft":
+//             console.log("ArrowLeft")
+//             snakeVel.x = -1;
+//             snakeVel.y = 0;
+//             break;
     
-        case "ArrowRight":
-            console.log("ArrowRight")
-            snakeVel.x = 1;
-            snakeVel.y = 0;
-            break;
+//         case "ArrowRight":
+//             console.log("ArrowRight")
+//             snakeVel.x = 1;
+//             snakeVel.y = 0;
+//             break;
     
-        default:
-            break;
-    }
+//         default:
+//             break;
+//     }
      
-});
+// });
 
 
 //touch controls
@@ -224,6 +224,24 @@ rightSide.addEventListener('touchstart', () => {
   if (snakeVel.x !== -1) {
     snakeVel.x = 1;
     snakeVel.y = 0;
+  }
+});
+
+// Add event listeners for keyboard events
+document.addEventListener('keydown', (event) => {
+  // Update the snake's direction based on the arrow keys that were pressed
+  if (event.keyCode === 37 && snakeVel.x !== 1) {
+    snakeVel.x = -1;
+    snakeVel.y = 0;
+  } else if (event.keyCode === 38 && snakeVel.y !== 1) {
+    snakeVel.x = 0;
+    snakeVel.y = -1;
+  } else if (event.keyCode === 39 && snakeVel.x !== -1) {
+    snakeVel.x = 1;
+    snakeVel.y = 0;
+  } else if (event.keyCode === 40 && snakeVel.y !== -1) {
+    snakeVel.x = 0;
+    snakeVel.y = 1;
   }
 });
 
