@@ -158,41 +158,53 @@ window.addEventListener('keydown', (e) => {
 
 // Touch events
 const touchArea = document.getElementById('touch-area');
-let startX = 0;
-let startY = 0;
+let startTouchX = 0;
+let startTouchY = 0;
 
 touchArea.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
+    startTouchX = e.touches[0].clientX;
+    startTouchY = e.touches[0].clientY;
+});
+
+touchArea.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // Prevent scrolling
 });
 
 touchArea.addEventListener('touchend', (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
-    const diffX = endX - startX;
-    const diffY = endY - startY;
+    const endTouchX = e.changedTouches[0].clientX;
+    const endTouchY = e.changedTouches[0].clientY;
+    const diffX = endTouchX - startTouchX;
+    const diffY = endTouchY - startTouchY;
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
         // Horizontal swipe
         if (diffX > 0) {
             // Right swipe
-            snakeVel.x = 1;
-            snakeVel.y = 0;
+            if (snakeVel.x !== -1) {
+                snakeVel.x = 1;
+                snakeVel.y = 0;
+            }
         } else {
             // Left swipe
-            snakeVel.x = -1;
-            snakeVel.y = 0;
+            if (snakeVel.x !== 1) {
+                snakeVel.x = -1;
+                snakeVel.y = 0;
+            }
         }
     } else {
         // Vertical swipe
         if (diffY > 0) {
             // Down swipe
-            snakeVel.x = 0;
-            snakeVel.y = 1;
+            if (snakeVel.y !== -1) {
+                snakeVel.x = 0;
+                snakeVel.y = 1;
+            }
         } else {
             // Up swipe
-            snakeVel.x = 0;
-            snakeVel.y = -1;
+            if (snakeVel.y !== 1) {
+                snakeVel.x = 0;
+                snakeVel.y = -1;
+            }
         }
     }
 });
